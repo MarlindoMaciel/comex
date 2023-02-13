@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,15 +21,4 @@ use Illuminate\Support\Facades\Route;
         return view('dashboard');
     })->middleware(['auth', 'verified'])->name('dashboard');
     
-    Route::middleware('auth')->group(function () {
-        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-        Route::resource('categorias', App\Http\Controllers\CategoriasController::class);
-        Route::resource('clientes', App\Http\Controllers\ClientesController::class);
-        Route::resource('produtos', App\Http\Controllers\ProdutosController::class);
-        Route::resource('testes', App\Http\Controllers\TestesController::class);  
-    });
     
-    require __DIR__.'/auth.php';

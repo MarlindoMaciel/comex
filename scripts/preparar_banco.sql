@@ -1,3 +1,16 @@
+    Route::middleware('auth')->group(function () {
+        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    });
+
+ 
+        //Route::resource('categorias', App\Http\Controllers\CategoriasController::class);
+        //Route::resource('clientes', App\Http\Controllers\ClientesController::class);
+        //Route::resource('produtos', App\Http\Controllers\ProdutosController::class);
+        //Route::resource('testes', App\Http\Controllers\TestesController::class);  
+    require __DIR__.'/auth.php';
 --BANCO: /script/comex.sqlite
 DELETE FROM categorias;
 INSERT INTO categorias VALUES(1,'LUXO',date('now'),date('now'));
