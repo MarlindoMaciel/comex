@@ -9,7 +9,7 @@ class PedidosController extends Controller
 {
   public function index() {
     $listagem = Pedidos::orderBy('id','desc')->get();
-    return view('pedidos',compact('listagem'));
+    return view('pedidos.index',compact('listagem'));
   }
 
   public function store(Request $request) {
@@ -18,7 +18,17 @@ class PedidosController extends Controller
     } else {
       $mensagem = "OCORREU UM ERRO AO CADASTRAR O ITEM \"$request->nome\" ".$errors[0];
     }
-    return redirect()->route('pedidos')->with('mensagem',$mensagem);
+    return redirect()->route('pedidos.index')->with('mensagem',$mensagem);
+  }
+
+  public function edit($pedido) {
+    $item = Pedidos::findOrNew($pedido);
+    return view('pedidos.edit',compact('item'));
+  }
+
+  public function create(Request $request) {
+    $item = Pedidos::findOrNew($request->id);
+    return view('pedidos.create',compact('item'));
   }
 
   public function update(Request $request) {
@@ -27,7 +37,7 @@ class PedidosController extends Controller
     } else {
       $mensagem = "OCORREU UM ERRO AO TENTAR ALTERAR O REGISTRO Nº $request->id ".$errors[0];
     }
-    return redirect()->route('pedidos')->with('mensagem',$mensagem);
+    return redirect()->route('pedidos.index')->with('mensagem',$mensagem);
   } 
 
   public function destroy(Request $request) {
@@ -37,6 +47,6 @@ class PedidosController extends Controller
       $mensagem = "OCORREU UM ERRO AO TENTAR EXLUIR O REGISTRO Nº $request->id ".$errors[0];
     }
 
-    return redirect()->route('pedidos')->with('mensagem',$mensagem);
+    return redirect()->route('pedidos.index')->with('mensagem',$mensagem);
   }
 }

@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>{{ env('APP_NAME').' '.env('APP_VERSION') }}</title>
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <style>
      body{
           background: -webkit-gradient(linear, left top, right top, from(#fff), to(#ddd)) repeat;
@@ -75,7 +75,6 @@
             <li class="nav-item"><a class="nav-link" href="{{ route('clientes.index') }}">Clientes</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('produtos.index') }}">Produtos</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('categorias.index') }}">Categorias</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ route('testes.index') }}">Teste</a></li>
             @endauth
           </ul>
 

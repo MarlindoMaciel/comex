@@ -11,7 +11,19 @@ class ProdutosController extends Controller
   public function index() {
     $listagem = Produtos::orderBy('id','desc')->get();
     $categorias = Categorias::orderBy('id','desc')->get();
-    return view('produtos',compact('listagem','categorias'));
+    return view('produtos.index',compact('listagem','categorias'));
+  }
+
+  public function edit($produto) {
+    $item = Produtos::findOrNew($produto);
+    $categorias = Categorias::orderBy('id','desc')->get();
+    return view('produtos.edit',compact('item','categorias'));
+  }
+
+  public function create(Request $request) {
+    $item = Produtos::findOrNew($request->id);
+    $categorias = Categorias::orderBy('id','desc')->get();
+    return view('produtos.create',compact('item','categorias'));
   }
 
   public function store(Request $request) {
@@ -20,7 +32,7 @@ class ProdutosController extends Controller
     } else {
       $mensagem = "OCORREU UM ERRO AO CADASTRAR O ITEM \"$request->nome\" ".$errors[0];
     }
-    return redirect()->route('produtos')->with('mensagem',$mensagem);
+    return redirect()->route('produtos.index')->with('mensagem',$mensagem);
   }
 
   public function update(Request $request) {
@@ -30,7 +42,7 @@ class ProdutosController extends Controller
     } else {
       $mensagem = "OCORREU UM ERRO AO TENTAR ALTERAR O REGISTRO Nº $request->id ".$errors[0];
     }
-    return redirect()->route('produtos')->with('mensagem',$mensagem);
+    return redirect()->route('produtos.index')->with('mensagem',$mensagem);
   }
 
   public function destroy(Request $request) {
@@ -40,6 +52,6 @@ class ProdutosController extends Controller
       $mensagem = "OCORREU UM ERRO AO TENTAR EXLUIR O REGISTRO Nº $request->id";
     }
 
-    return redirect()->route('produtos')->with('mensagem',$mensagem);
+    return redirect()->route('produtos.index')->with('mensagem',$mensagem);
   }
 }

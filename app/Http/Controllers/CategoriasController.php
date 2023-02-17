@@ -8,14 +8,18 @@ use Illuminate\Http\Request;
 class CategoriasController extends Controller
 {
     public function index() {
-      $classe= "Categorias";
       $listagem = Categorias::orderBy('id','desc')->get();
-      return view('categorias.index',compact('classe','listagem'));
+      return view('categorias.index',compact('listagem'));
     }
 
-    public function show() {
-      $listagem = Categorias::orderBy('id','desc')->get();
-      return view('categorias',compact('listagem'));
+    public function edit($categoria) {
+      $item = Categorias::findOrNew($categoria);
+      return view('categorias.edit',compact('item'));
+    }
+
+    public function create(Request $request) {
+      $item = Categorias::findOrNew($request->id);
+      return view('categorias.create',compact('item'));
     }
 
     public function store(Request $request) {

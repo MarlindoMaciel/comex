@@ -19,7 +19,7 @@ class TestesController extends Controller
       return view('create',compact('classe'));
     }
 
-    public function create() {
+    public function edit() {
       $classe = "categorias";
       return view('create',compact('classe'));
     }
