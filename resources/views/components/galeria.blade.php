@@ -42,9 +42,9 @@
     @isset( $produtos )
         @foreach($produtos as $produto)
             <div class="box"><center>
-            <img src="{{ asset('/imagens/') }}/carrinho.png" class="carrinho" onclick="adicionar({{ $produto->id }})">
-                <a data-fancybox="gallery" href="{{ asset('/imagens/') }}/{{ $produto->imagem }}" data-caption="<h1>{{ $produto->nome }}</h1>{{ $produto->descricao }}<div class='valor'>R$ {{ $produto->valor_unitario }}</div>">
-                   <img class="imagem" src="{{ asset('/imagens/') }}/{{ $produto->miniatura }}">
+            <img src="{{ asset('/comex/imagens/') }}/carrinho.png" class="carrinho" onclick="adicionar({{ $produto->id }})">
+                <a data-fancybox="gallery" href="{{ asset('/comex/imagens/') }}/{{ $produto->imagem }}" data-caption="<h1>{{ $produto->nome }}</h1>{{ $produto->descricao }}<div class='valor'>R$ {{ $produto->valor_unitario }}</div>">
+                   <img class="imagem" src="{{ asset('/comex/imagens/') }}/{{ $produto->miniatura }}">
                 </a></center>
                 {{ $produto->nome }}<br>
               <span class="valor">R$ {{ number_format( str_replace(',','.',$produto->valor_unitario), 2, ',', '.') }}</span>

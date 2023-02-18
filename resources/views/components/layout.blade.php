@@ -63,7 +63,7 @@
       </div>
     @endif
 
-    <div class="logo"><img src="{{ asset('/imagens/') }}/comex.png"></div>
+    <div class="logo"><img src="{{ asset('/comex/imagens/') }}/comex.png"></div>
     
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
