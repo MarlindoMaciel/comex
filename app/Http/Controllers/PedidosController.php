@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Models\Pedidos;
 use Illuminate\Http\Request;
 
@@ -24,6 +25,14 @@ class PedidosController extends Controller
   public function edit($pedido) {
     $item = Pedidos::findOrNew($pedido);
     return view('pedidos.edit',compact('item'));
+  }
+
+  public function show($pedido) {
+    if( isset( Auth::user()->id ) )
+        $listagem = Pedidos::where('clientes_id','=',Auth::user()->id);
+    else    
+        $listagem = Pedidos::where('clientes_id','=',session_id());
+    return view('pedidos.show',compact('listagem'));
   }
 
   public function create(Request $request) {

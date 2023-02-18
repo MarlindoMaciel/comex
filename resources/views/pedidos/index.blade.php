@@ -1,4 +1,4 @@
-<x-layout>
+<x-comex.layout>
   <h4>Listagem de Pedidos</h4>
   <div class="row mb-3">
     <div class="col-5">
@@ -35,4 +35,4 @@
   @endisset
 
 
-</x-layout>
+</x-comex.layout>

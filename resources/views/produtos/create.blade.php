@@ -1,4 +1,4 @@
-<x-layout>
+<x-comex.layout>
   <form method="POST" action="{{ route('produtos.store') }}">
     @csrf  
 
@@ -32,4 +32,4 @@
     <button type="submit" class="btn btn-primary">Salvar</button>&nbsp;
     <a class="btn btn-primary" href="{{ route('produtos.index') }}">Fechar</a>
     </form>
-</x-layout>
+</x-comex.layout>
