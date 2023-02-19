@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+define("MENSAGEM_SUCESSO",'<i class="fa fa-check-square" style="font-color:green">Operação realizada com sucesso</i>');
+define("MENSAGEM_INSUCESSO",'<i class="fa fa-warning" style="font-color:red">Operação não pode ser realizada</i>');
+
 Route::resource('/',                App\Http\Controllers\ComexController::class);
 Route::resource('pedidos',          App\Http\Controllers\PedidosController::class);
 

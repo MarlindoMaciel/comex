@@ -48,5 +48,5 @@ body{
  .mensagem{
    float:right;
    margin:10px;
-   display:none;
+   xdisplay:none;
  }

@@ -15,8 +15,8 @@
   </head>
   <body>
     <div class="alert alert-primary mensagem"  id="message" role="alert">
-    @if (session('mensagem') ) 
-        {{ session('mensagem') }}
+    @if ( isset( session()->message ) ) 
+        {{ session()->message }}
     @endif
     </div>
  

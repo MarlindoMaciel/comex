@@ -24,30 +24,29 @@ class CategoriasController extends Controller
 
     public function store(Request $request) {
       if( Categorias::create( $request->all() ) ){
-        $mensagem = "REGISTRO \"$request->nome\" CADASTRADO COM SUCESSO";
+        session()->flash("mensagem",MENSAGEM_SUCESSO);
       } else {
-        $mensagem = "OCORREU UM ERRO AO CADASTRAR O ITEM \"$request->nome\" ".$errors[0];
+        session()->flash("mensagem",MENSAGEM_INSUCESSO);
       }
-      return redirect()->route('categorias.index')->with('mensagem',$mensagem);
+      return to_route('categorias.index');
     }
 
     public function update(Request $request) {
       //dd($request);
       if( Categorias::find( $request->id )->update( $request->all() ) ){
-        $mensagem = "REGISTRO Nº $request->id ALTERADO COM SUCESSO";
+        session()->flash("mensagem",MENSAGEM_SUCESSO);
       } else {
-        $mensagem = "OCORREU UM ERRO AO TENTAR ALTERAR O REGISTRO Nº $request->id ".$errors[0];
+        session()->flash("mensagem",MENSAGEM_INSUCESSO);
       }
-      return redirect()->route('categorias.index')->with('mensagem',$mensagem);
+      return to_route('categorias.index');
     }
     
     public function destroy($id) {
       if( Categorias::find( $id )->delete() ) {
-        $mensagem = "REGISTRO Nº $id EXCLUÍDO COM SUCESSO";
+        session('message',MENSAGEM_SUCESSO);
       } else {
-        $mensagem = "OCORREU UM ERRO AO TENTAR EXLUIR O REGISTRO Nº $id";
+        session('message',MENSAGEM_INSUCESSO);
       }
-
-      return redirect()->route('categorias.index')->with('mensagem',$mensagem);
+      return to_route('categorias.index');
     }
 }
