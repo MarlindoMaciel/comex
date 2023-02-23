@@ -29,7 +29,7 @@
     <select name="clientes_id" class="form-control" value="{{ $item->clientes_id }}">
     @isset( $clientes ) 
       @foreach ( $clientes as $cliente )
-        <option value="{{ $cliente->id }}" @if( $item->cliente_id == $cliente->id ) selected @endif>{{ $cliente->name }}</option>
+        <option value="{{ $cliente->id }}" @if( $item->cliente_id == $cliente->id ) selected @endif>{{ $cliente->nome }}</option>
       @endforeach
     @endisset
     </select>

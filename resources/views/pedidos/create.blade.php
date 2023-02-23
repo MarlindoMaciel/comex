@@ -21,16 +21,16 @@
         <option value="{{ $statu->id }}">{{ $statu->status }}</option>
       @endforeach
     @endisset
-    </select>
+    </select><br>
     
     <label>Cliente:</label>
     <select name="clientes_id" class="form-control" value="{{ old('clientes_id') }}">
     @isset( $clientes ) 
       @foreach ( $clientes as $cliente )
-        <option value="{{ $cliente->id }}">{{ $cliente->name }}</option>
+        <option value="{{ $cliente->id }}">{{ $cliente->nome }}</option>
       @endforeach
     @endisset
-    </select>
+    </select><br>
 
     <button type="submit" class="btn btn-primary">Salvar</button>&nbsp;
     <a class="btn btn-primary" href="{{ route('pedidos.index') }}">Fechar</a>
