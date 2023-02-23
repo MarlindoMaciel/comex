@@ -5,7 +5,7 @@
     <input type="hidden" name="id" value="{{ $item->id }}">
 
     <label>Categoria:</label>
-    <input type="text" name="nome" id="nome" class="form-control" value="{!! $item->nome !!}" required="required">
+    <input type="text" name="nome" id="nome" class="form-control" value="{!! $item->nome !!}">
     <br>
     <button type="submit" class="btn btn-primary">Salvar</button>&nbsp;
     <a class="btn btn-primary" href="{{ route('categorias.index') }}">Fechar</a>

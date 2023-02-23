@@ -2,7 +2,7 @@
   <h4>Listagem de Clientes</h4>
   <div class="row mb-3">
     <div class="col-5">
-      <input type="text" name="nome" class="form-control" placeholder="Digite um item para Clientes" required="required" >
+      <input type="text" name="nome" class="form-control" placeholder="Digite um item para Clientes" required="required">
     </div>
     <div class="col-1">
       <button type="submit" class="btn btn-primary botao">Filtrar</button>

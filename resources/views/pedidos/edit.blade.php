@@ -5,22 +5,34 @@
     <input type="hidden" name="id" value="{{ $item->id }}">
 
     <label>Pedido:</label>
-    <input type="text" name="nome" class="form-control" value="{!! $item->nome !!}" required="required"><br>
+    <input type="text" name="nome" class="form-control" value="{{ $item->nome }}"><br>
     
     <label>Valor Parcial:</label>
-    <input type="text" name="valor_parcial" class="form-control" value="{!! $item->valor_parcial !!}" required="required"><br>
+    <input type="text" name="valor_parcial" class="form-control" value="{{ $item->valor_parcial }}"><br>
     
     <label>Valor de Desconto:</label>
-    <input type="text" name="valor_desconto" class="form-control" value="{!! $item->valor_desconto !!}" required="required"><br>
+    <input type="text" name="valor_desconto" class="form-control" value="{{ $item->valor_desconto }}"><br>
     
     <label>Valor Total:</label>
-    <input type="text" name="valor_total" class="form-control" value="{!! $item->valor_total !!}" required="required"><br>
+    <input type="text" name="valor_total" class="form-control" value="{{ $item->valor_total }}"><br>
     
     <label>Status:</label>
-    <input type="text" name="status" class="form-control" value="{!! $item->status !!}" required="required"><br>
+    <select name="status_id" class="form-control" value="{{ $item->status_id }}">
+    @isset( $status ) 
+      @foreach ( $status as $statu )
+        <option value="{{ $statu->id }}" @if( $item->status_id == $statu->id ) selected @endif>{{ $statu->status }}</option>
+      @endforeach
+    @endisset
+    </select>
     
     <label>Cliente:</label>
-    <input type="text" name="fk_cliente" class="form-control" value="{!! $item->fk_cliente !!}" required="required"><br>
+    <select name="clientes_id" class="form-control" value="{{ $item->clientes_id }}">
+    @isset( $clientes ) 
+      @foreach ( $clientes as $cliente )
+        <option value="{{ $cliente->id }}" @if( $item->cliente_id == $cliente->id ) selected @endif>{{ $cliente->name }}</option>
+      @endforeach
+    @endisset
+    </select>
 
     <button type="submit" class="btn btn-primary">Salvar</button>&nbsp;
     <a class="btn btn-primary" href="{{ route('pedidos.index') }}">Fechar</a>

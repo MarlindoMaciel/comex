@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Produtos;
 use App\Models\Categorias;
+use App\Http\Requests\ProdutosFormRequest;
 use Illuminate\Http\Request;
+use DB;
 
 class ProdutosController extends Controller
 {
@@ -14,44 +16,51 @@ class ProdutosController extends Controller
     return view('produtos.index',compact('listagem','categorias'));
   }
 
+  public function create() {
+    $categorias = Categorias::orderBy('id','desc')->get();
+    return view('produtos.create',compact('categorias'));
+  }
+
   public function edit($produto) {
     $item = Produtos::findOrNew($produto);
     $categorias = Categorias::orderBy('id','desc')->get();
     return view('produtos.edit',compact('item','categorias'));
   }
 
-  public function create(Request $request) {
-    $item = Produtos::findOrNew($request->id);
-    $categorias = Categorias::orderBy('id','desc')->get();
-    return view('produtos.create',compact('item','categorias'));
-  }
-
-  public function store(Request $request) {
+  public function store(ProdutosFormRequest $request) {
+    DB::beginTransaction();
     if( Produtos::create( $request->all() ) ){
-      $mensagem = "REGISTRO \"$request->nome\" CADASTRADO COM SUCESSO";
+      $mensagem = MENSAGEM_SUCESSO;
+      DB::commit(); 
     } else {
-      $mensagem = "OCORREU UM ERRO AO CADASTRAR O ITEM \"$request->nome\" ".$errors[0];
+      $mensagem = MENSAGEM_INSUCESSO;
+      DB::rollBack();
     }
-    return redirect()->route('produtos.index')->with('mensagem',$mensagem);
+    return to_route('produtos.index')->with('mensagem',$mensagem);
   }
 
-  public function update(Request $request) {
-    
+  public function update(ProdutosFormRequest $request) {
+    DB::beginTransaction();  
     if( Produtos::find( $request->id )->update( $request->all() ) ){
-      $mensagem = "REGISTRO Nº $request->id ALTERADO COM SUCESSO";
+      $mensagem = MENSAGEM_SUCESSO;
+      DB::commit(); 
     } else {
-      $mensagem = "OCORREU UM ERRO AO TENTAR ALTERAR O REGISTRO Nº $request->id ".$errors[0];
+      $mensagem = MENSAGEM_INSUCESSO;
+      DB::rollBack();
     }
-    return redirect()->route('produtos.index')->with('mensagem',$mensagem);
+    return to_route('produtos.index')->with('mensagem',$mensagem);
   }
 
-  public function destroy(Request $request) {
-    if( Produtos::find( $request->id )->delete() ) {
-      $mensagem = "REGISTRO Nº $request->id EXCLUÍDO COM SUCESSO";
+  public function destroy($produto) {
+    DB::beginTransaction();
+    if( Produtos::find( $produto )->delete() ) {
+      $mensagem = MENSAGEM_SUCESSO;
+      DB::commit(); 
     } else {
-      $mensagem = "OCORREU UM ERRO AO TENTAR EXLUIR O REGISTRO Nº $request->id";
+      $mensagem = MENSAGEM_INSUCESSO;
+      DB::rollBack();
     }
 
-    return redirect()->route('produtos.index')->with('mensagem',$mensagem);
+    return to_route('produtos.index')->with('mensagem',$mensagem);
   }
 }

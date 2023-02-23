@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Clientes;
-use Illuminate\Http\Request; 
+use App\Http\Requests\ClientesFormRequest;
+use Illuminate\Http\Request;
+use DB;
 
 class ClientesController extends Controller
 {
@@ -12,41 +14,49 @@ class ClientesController extends Controller
     return view('clientes.index',compact('listagem'));
   }
 
+  public function create() {
+    return view('clientes.create');
+  }
+
   public function edit($cliente) {
     $item = Clientes::findOrNew($cliente);
     return view('clientes.edit',compact('item'));
   }
 
-  public function create(Request $request) {
-    $item = Clientes::findOrNew($request->id);
-    return view('clientes.create',compact('item'));
-  }
-
-  public function store(Request $request) {
+  public function store(ClientesFormRequest $request) {
+    DB::beginTransaction();
     if( Clientes::create( $request->all() ) ){
-      $mensagem = "REGISTRO \"$request->nome\" CADASTRADO COM SUCESSO";
+      $mensagem = MENSAGEM_SUCESSO;
+      DB::commit(); 
     } else {
-      $mensagem = "OCORREU UM ERRO AO CADASTRAR O ITEM \"$request->nome\" ".$errors[0];
+      $mensagem = MENSAGEM_INSUCESSO;
+      DB::rollBack();
     }
-    return redirect()->route('clientes.index')->with('mensagem',$mensagem);
+    return to_route('clientes.index')->with('mensagem',$mensagem);
   }
 
-  public function update(Request $request) {
-      if( Clientes::find( $request->id )->update( $request->all() ) ){
-      $mensagem = "REGISTRO Nº $request->id ALTERADO COM SUCESSO";
+  public function update(ClientesFormRequest $request) {
+    DB::beginTransaction();
+    if( Clientes::find( $request->id )->update( $request->all() ) ){
+      $mensagem = MENSAGEM_SUCESSO;
+      DB::commit(); 
     } else {
-      $mensagem = "OCORREU UM ERRO AO TENTAR ALTERAR O REGISTRO Nº $request->id ".$errors[0];
+      $mensagem = MENSAGEM_INSUCESSO;
+      DB::rollBack();
     }
-    return redirect()->route('clientes.index')->with('mensagem',$mensagem);
+    return to_route('clientes.index')->with('mensagem',$mensagem);
   }
 
-  public function destroy(Request $request) {
-    if( Clientes::find( $request->id )->delete() ) {
-      $mensagem = "REGISTRO Nº $request->id EXCLUÍDO COM SUCESSO";
+  public function destroy($cliente) {
+    DB::beginTransaction();
+    if( Clientes::find( $cliente )->delete() ) {
+      $mensagem = MENSAGEM_SUCESSO;
+      DB::commit(); 
     } else {
-      $mensagem = "OCORREU UM ERRO AO TENTAR EXLUIR O REGISTRO Nº $request->id";
+      $mensagem = MENSAGEM_INSUCESSO;
+      DB::rollBack();
     }
 
-    return redirect()->route('clientes.index')->with('mensagem',$mensagem);
+    return to_route('clientes.index')->with('mensagem',$mensagem);
   }
 }

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categorias;
+use App\Http\Requests\CategoriasFormRequest;
 use Illuminate\Http\Request;
+use DB;
 
 class CategoriasController extends Controller
 {
@@ -12,41 +14,48 @@ class CategoriasController extends Controller
       return view('categorias.index',compact('listagem'));
     }
 
+    public function create() {
+      return view('categorias.create');
+    }
+
     public function edit($categoria) {
       $item = Categorias::findOrNew($categoria);
       return view('categorias.edit',compact('item'));
     }
 
-    public function create(Request $request) {
-      $item = Categorias::findOrNew($request->id);
-      return view('categorias.create',compact('item'));
-    }
-
-    public function store(Request $request) {
+    public function store(CategoriasFormRequest $request) {
+      DB::beginTransaction();
       if( Categorias::create( $request->all() ) ){
-        session()->flash("mensagem",MENSAGEM_SUCESSO);
+        $mensagem = MENSAGEM_SUCESSO;
+        DB::commit(); 
       } else {
-        session()->flash("mensagem",MENSAGEM_INSUCESSO);
+        $mensagem = MENSAGEM_INSUCESSO;
+        DB::rollBack();
       }
-      return to_route('categorias.index');
+      return to_route('categorias.index')->with('mensagem',$mensagem);
     }
 
-    public function update(Request $request) {
-      //dd($request);
+    public function update(CategoriasFormRequest $request) {
+      DB::beginTransaction();
       if( Categorias::find( $request->id )->update( $request->all() ) ){
-        session()->flash("mensagem",MENSAGEM_SUCESSO);
+        $mensagem = MENSAGEM_SUCESSO;
+        DB::commit();
       } else {
-        session()->flash("mensagem",MENSAGEM_INSUCESSO);
+        $mensagem = MENSAGEM_INSUCESSO;
+        DB::rollBack();
       }
-      return to_route('categorias.index');
+      return to_route('categorias.index')->with('mensagem',$mensagem);
     }
     
-    public function destroy($id) {
-      if( Categorias::find( $id )->delete() ) {
-        session('message',MENSAGEM_SUCESSO);
+    public function destroy($categoria) {
+      DB::beginTransaction();
+      if( Categorias::find( $categoria )->delete() ) {
+        $mensagem = MENSAGEM_SUCESSO;
+        DB::commit();
       } else {
-        session('message',MENSAGEM_INSUCESSO);
+        $mensagem = MENSAGEM_INSUCESSO;
+        DB::rollBack();
       }
-      return to_route('categorias.index');
+      return to_route('categorias.index')->with('mensagem',$mensagem);;
     }
 }

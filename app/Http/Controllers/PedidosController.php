@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Models\Pedidos;
+use App\Models\Clientes;
+use App\Models\Status;
+use App\Http\Requests\PedidosFormRequest;
 use Illuminate\Http\Request;
+use DB;
 
 class PedidosController extends Controller
 {
@@ -13,18 +17,17 @@ class PedidosController extends Controller
     return view('pedidos.index',compact('listagem'));
   }
 
-  public function store(Request $request) {
-    if( Pedidos::create( $request->all() ) ){
-      $mensagem = "REGISTRO \"$request->nome\" CADASTRADO COM SUCESSO";
-    } else {
-      $mensagem = "OCORREU UM ERRO AO CADASTRAR O ITEM \"$request->nome\" ".$errors[0];
-    }
-    return redirect()->route('pedidos.index')->with('mensagem',$mensagem);
+  public function create() {
+    $clientes = Clientes::all();
+    $status = Status::all();
+    return view('pedidos.create',compact('clientes','status'));
   }
 
   public function edit($pedido) {
     $item = Pedidos::findOrNew($pedido);
-    return view('pedidos.edit',compact('item'));
+    $clientes = Clientes::all();
+    $status = Status::all();
+    return view('pedidos.edit',compact('item','clientes','status'));
   }
 
   public function show($pedido) {
@@ -35,27 +38,40 @@ class PedidosController extends Controller
     return view('pedidos.show',compact('listagem'));
   }
 
-  public function create(Request $request) {
-    $item = Pedidos::findOrNew($request->id);
-    return view('pedidos.create',compact('item'));
+  public function store(PedidosFormRequest $request) {
+    DB::beginTransaction();
+    if( Pedidos::create( $request->all() ) ){
+      $mensagem = MENSAGEM_SUCESSO;
+      DB::commit(); 
+    } else {
+      $mensagem = MENSAGEM_INSUCESSO;
+      DB::rollBack();
+    }
+    return to_route('pedidos.index')->with('mensagem',$mensagem);
   }
 
-  public function update(Request $request) {
+  public function update(PedidosFormRequest $request) {
+    DB::beginTransaction();
     if( Pedidos::find( $request->id )->update( $request->all() ) ){
-      $mensagem = "REGISTRO Nº $request->id ALTERADO COM SUCESSO";
+      $mensagem = MENSAGEM_SUCESSO;
+      DB::commit(); 
     } else {
-      $mensagem = "OCORREU UM ERRO AO TENTAR ALTERAR O REGISTRO Nº $request->id ".$errors[0];
+      $mensagem = MENSAGEM_INSUCESSO;
+      DB::rollBack();
     }
-    return redirect()->route('pedidos.index')->with('mensagem',$mensagem);
+    return to_route('pedidos.index')->with('mensagem',$mensagem);
   } 
 
-  public function destroy(Request $request) {
-    if( Pedidos::find( $request->id )->delete() ) {
-      $mensagem = "REGISTRO Nº $request->id EXCLUÍDO COM SUCESSO";
+  public function destroy($pedido) {
+    DB::beginTransaction();
+    if( Pedidos::find( $pedido )->delete() ) {
+      $mensagem = MENSAGEM_SUCESSO;
+      DB::commit(); 
     } else {
-      $mensagem = "OCORREU UM ERRO AO TENTAR EXLUIR O REGISTRO Nº $request->id ".$errors[0];
+      $mensagem = MENSAGEM_INSUCESSO;
+      DB::rollBack();
     }
 
-    return redirect()->route('pedidos.index')->with('mensagem',$mensagem);
+    return to_route('pedidos.index')->with('mensagem',$mensagem);
   }
 }

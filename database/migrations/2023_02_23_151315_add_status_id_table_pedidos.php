@@ -8,17 +8,17 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->integer('acess_level') // Nome da coluna
+        Schema::table('pedidos', function (Blueprint $table) {
+            $table->integer('statis_id') // Nome da coluna
                         ->default(1) // Preenchimento não obrigatório
-                        ->after('active'); // Ordenado após a coluna "active"
+                        ->after('clientes_id'); // Ordenado após a coluna "active"
         });
     }
 
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('acess_level');
+        Schema::table('pedidos', function (Blueprint $table) {
+            $table->dropColumn('status_id');
         });
     }
 };

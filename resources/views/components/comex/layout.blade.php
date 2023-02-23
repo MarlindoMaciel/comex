@@ -14,11 +14,20 @@
 
   </head>
   <body>
-    <div class="alert alert-primary mensagem"  id="message" role="alert">
-    @if ( isset( session()->message ) ) 
-        {{ session()->message }}
+    @if( session()->has('mensagem') )  
+      <div class="alert alert-primary mensagem"  id="message" role="alert">
+        {!! session('mensagem') !!}
+      </div>
     @endif
+    @if ($errors->any())
+    <div class="alert alert-danger mensagem">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
     </div>
+    @endif
  
     <div class="logo"><img src="{{ asset('/comex/imagens/') }}/comex.png"></div>
     
