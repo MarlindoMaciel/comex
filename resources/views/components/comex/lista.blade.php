@@ -10,9 +10,7 @@
       <a href="{{ route('testes.create') }}" class="btn btn-primary botao">Adicionar</a>
     </div>
   </div>
-
   <hr>
-  
   @isset( $listagem )
       @foreach($listagem as $item)
       <div class="row mb-3">

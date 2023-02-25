@@ -1,3 +1,8 @@
 {
-    "/css/app.css": "/css/app.css"
+    "/fancybox/fancybox.css": "/fancybox/fancybox.css",
+    "/fontawesome/fontawesome.css": "/fontawesome/fontawesome.css",
+    "/bootstrap/bootstrap.css": "/bootstrap/bootstrap.css",
+    "/jquery/jquery.js": "/jquery/jquery.js",
+    "/bootstrap/bootstrap.js": "/bootstrap/bootstrap.js",
+    "/fancybox/fancybox.js": "/fancybox/fancybox.js"
 }

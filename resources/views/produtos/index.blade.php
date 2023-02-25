@@ -11,9 +11,7 @@
       <a href="{{ route('produtos.create') }}" class="btn btn-primary botao">Adicionar</a>
     </div>
   </div>
-
   <hr>
-  
   @isset( $listagem )
       @foreach($listagem as $item)
       <div class="row mb-3">

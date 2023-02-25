@@ -1,7 +1,6 @@
 <x-comex.layout>
   <form method="POST" action="{{ route('categorias.store') }}">
     @csrf    
-
     <label>Categoria:</label>
     <input type="text" name="nome" id="nome" class="form-control" value="{{ old('nome') }}">
     <br>  

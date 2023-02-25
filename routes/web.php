@@ -14,10 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-define("MENSAGEM_SUCESSO",'<i class="fa fa-check-square" style="font-color:green">Operação realizada com sucesso</i>');
-define("MENSAGEM_INSUCESSO",'<i class="fa fa-warning" style="font-color:red">Operação não pode ser realizada</i>');
+define("MENSAGEM_INSUCESSO",'<span class=" text-sucess"><i class="fa-solid fa-sm fa-check"></i>&nbsp;Operação realizada com sucesso!</span>');
+define("MENSAGEM_SUCESSO",'<span class=" text-danger"><i class="fa-solid fa-sm fa-warning"></i>&nbsp;Operação não pode ser realizada!</span>');
 
-Route::resource('/',                App\Http\Controllers\ComexController::class);
+Route::resource('/home',            App\Http\Controllers\ComexController::class);
 Route::resource('pedidos',          App\Http\Controllers\PedidosController::class);
 
 Route::get('/dashboard', function () {

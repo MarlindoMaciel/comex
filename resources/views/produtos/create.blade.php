@@ -1,7 +1,6 @@
 <x-comex.layout>
   <form method="POST" action="{{ route('produtos.store') }}">
     @csrf  
-
     <label>Produto:</label>
     <input type="text" name="nome" class="form-control" value="{{ $item->nome }}" required="required"><br>
     
@@ -25,7 +24,6 @@
       @endforeach
     </select>
     <br>
-
     <label>Descrição:</label>
     <textarea name="descricao" class="form-control" required="required">{!! $item->descricao !!}</textarea><br>
     

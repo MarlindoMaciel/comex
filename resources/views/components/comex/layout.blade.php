@@ -4,19 +4,32 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>{{ env('APP_NAME').' '.env('APP_VERSION') }}</title>
+    <!-- jquery -->
+    <script src="{{ asset('jquery/jquery.js') }}"></script>
 
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('comex/css/comex.css') }}">
-    <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- comex -->
+    <link rel="stylesheet" href="{{ asset('comex/comex.css') }}" />
+    <script src="{{ asset('comex/comex.js') }}"></script>
 
-    <script src="{{ asset('comex/js/comex.js') }}"></script>
-    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="{{ asset('fontawesome/fontawesome.css') }}" />
+
+    <!-- bootstrap -->   
+    <link rel="stylesheet" href="{{ asset('bootstrap/bootstrap.css') }}" />
+    <script src="{{ asset('bootstrap/bootstrap.js') }}"></script>
+
+    <!-- fancybox -->   
+    <link rel="stylesheet" href="{{ asset('fancybox/fancybox.css') }}" />
+    <script src="{{ asset('fancybox/fancybox.js') }}"></script>
 
   </head>
   <body>
     @if( session()->has('mensagem') )  
-      <div class="alert alert-primary mensagem"  id="message" role="alert">
+      <div class="alert alert-primary mensagem"  id="mensagem" role="alert">
         {!! session('mensagem') !!}
+      </div>
+    @else  
+      <div class="alert alert-primary mensagem" style="display:none;"  id="mensagem" role="alert">
       </div>
     @endif
     @if ($errors->any())

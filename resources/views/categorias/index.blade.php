@@ -11,10 +11,8 @@
       <a href="{{ route('categorias.create',0) }}" class="btn btn-primary botao">Adicionar</a>
     </div>
   </div>
-
   <hr>
-  
-  @isset( $listagem )
+   @isset( $listagem )
       @foreach($listagem as $item)
       <div class="row mb-3">
         <div class="col-5">
@@ -33,6 +31,4 @@
       </div>
       @endforeach
   @endisset
-
-
 </x-comex.layout>
