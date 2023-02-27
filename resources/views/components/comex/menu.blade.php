@@ -7,7 +7,7 @@
         @auth
           @if( Auth::user()->acess_level > 1 )
             <li class="nav-item"><a class="nav-link" href="{{ route('pedidos.index') }}"><i class="fa-solid fa-sm fa-list"></i>&nbsp;Pedidos</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ route('clientes.index') }}"><i class="fa-solid fa-sm fa-user"></i>&nbsp;Clientes</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('clientes.index') }}"><i class="fa-solid fa-sm fa-group"></i>&nbsp;Clientes</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('produtos.index') }}"><i class="fa-solid fa-sm fa-gift"></i>&nbsp;Produtos</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('categorias.index') }}"><i class="fa-solid fa-sm fa-sitemap"></i>&nbsp;Categorias</a></li>
           @endif
@@ -15,16 +15,16 @@
       </ul>
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <button class="btn btn-outline-success" type="submit">Procurar</button>
       </form>&nbsp;
         @if (Route::has('login'))
           <div class="me-2">
             @auth
-              <a href="{{ url('/dashboard') }}" class="btn btn-outline-success">Minha conta</a>
+              <a href="{{ url('/dashboard') }}" class="btn btn-outline-success"><i class="fa-solid fa-sm fa-user"></i>Minha conta</a>
             @else
-              <a href="{{ route('login') }}" class="btn btn-outline-success"><i class="fa fa-user-cicle">&nbsp;Logar</i></a>
+              <a href="{{ route('login') }}" class="btn btn-outline-success"><i class="fa-solid fa-sm fa-user"></i>&nbsp;Logar</a>
               @if (Route::has('register'))
-                <a href="{{ route('register') }}" class="btn btn-outline-success"><i class="fa fa-book">&nbsp;Registar-se</i></a>
+                <a href="{{ route('register') }}" class="btn btn-outline-success"><i class="fa fa-book"></i>&nbsp;Registar-se</a>
               @endif
             @endauth
             </div>
