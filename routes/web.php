@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-define("MENSAGEM_INSUCESSO",'<span class=" text-sucess"><i class="fa-solid fa-sm fa-check"></i>&nbsp;Operação realizada com sucesso!</span>');
-define("MENSAGEM_SUCESSO",'<span class=" text-danger"><i class="fa-solid fa-sm fa-warning"></i>&nbsp;Operação não pode ser realizada!</span>');
+define("MENSAGEM_SUCESSO",'<span class=" text-sucess"><i class="fa-solid fa-sm fa-check"></i>&nbsp;Operação realizada com sucesso!</span>');
+define("MENSAGEM_INSUCESSO",'<span class=" text-danger"><i class="fa-solid fa-sm fa-warning"></i>&nbsp;Operação não pode ser realizada!</span>');
 
 Route::resource('/',                App\Http\Controllers\ComexController::class);
 Route::resource('/home',            App\Http\Controllers\ComexController::class);

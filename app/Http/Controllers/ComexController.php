@@ -20,8 +20,8 @@ class ComexController extends Controller
       else
          $produtos = Produtos::orderBy('created_at','desc')->get();
 
-      //dd($produtos);
+      $quantidade=10;
 
-      return view('index',compact('menu_lateral','produtos'));
+      return view('index',compact('menu_lateral','produtos','quantidade'));
     }
 }

@@ -22,6 +22,13 @@
     <link rel="stylesheet" href="{{ asset('fancybox/fancybox.css') }}" />
     <script src="{{ asset('fancybox/fancybox.js') }}"></script>
 
+    <!-- datatables -->   
+    <link rel="stylesheet" href="{{ asset('datatables/datatables.css') }}" />
+    <link rel="stylesheet" href="{{ asset('datatables/buttons.dataTables.css') }}" />
+    <script src="{{ asset('datatables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('datatables/dataTables.dataTables.js') }}"></script>
+    <script src="{{ asset('datatables/buttons.dataTables.js') }}"></script>
+
   </head>
   <body>
     @if( session()->has('mensagem') )  
@@ -44,7 +51,7 @@
  
     <div class="logo"><img src="{{ asset('/comex/imagens/') }}/comex.png"></div>
     
-    <x-comex.menu />
+    <x-comex.menu :quantidade=$quantidade />
     
     <br>
     <div class="conteudo">

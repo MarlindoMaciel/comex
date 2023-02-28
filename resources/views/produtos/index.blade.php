@@ -1,34 +1,50 @@
 <x-comex.layout>
   <h4>Listagem de Produtos</h4>
-  <div class="row mb-3">
-    <div class="col-5">
-      <input type="text" name="nome" class="form-control" placeholder="Digite um item para Produtos" required="required" >
+    <div style="position:absolute">
+      <a href="{{ route('produtos.create') }}" class="btn btn-primary botao">
+        <i class="fa-solid fa-plus fa-sm"></i>&nbsp;Adicionar um novo produto
+      </a>
     </div>
-    <div class="col-1">
-      <button type="submit" class="btn btn-primary botao">Filtrar</button>
-    </div>
-    <div class="col-1">
-      <a href="{{ route('produtos.create') }}" class="btn btn-primary botao">Adicionar</a>
-    </div>
-  </div>
-  <hr>
-  @isset( $listagem )
+  <table id="listagem" class="table table-striped">
+    <thead>
+      <tr>
+          <th>Produto</th>
+          <th>Categoria</th>
+          <th>Preço</th>
+          <th>Estoque</th>
+          <th>Vendidos</th>
+          <th width="20%" nowrap>Ação</th>
+      </tr>
+    </thead>
+    <tbody>
+    @isset( $listagem )
       @foreach($listagem as $item)
-      <div class="row mb-3">
-        <div class="col-5">
-          <span class="form-control">{{ $item->nome }}</span>
-        </div>
-        <div class="col-1">
-            <a href="{{ route('produtos.edit',$item->id) }}" class="btn btn-primary botao">Editar</a>
-        </div>
-        <div class="col-1">
-        <form method="POST" action="{{ route('produtos.destroy',$item->id) }}">
+        <tr>
+          <td>{{ $item->nome }}</td>
+          <td>{{ $item->categoria }}</td>
+          <td>{{ $item->valor_unitario }}</td>
+          <td>{{ $item->estoque }}</td>
+          <td>{{ $item->vendidos }}</td>
+          <td>
+              <form method="POST" action="{{ route('produtos.destroy',$item->id) }}">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-primary botao">Remover</button>
-             </form>
-        </div>
-      </div>
+                <a href="{{ route('produtos.edit',$item->id) }}" class="btn btn-primary botao">
+                <i class="fa-solid fa-edit fa-sm"></i>&nbsp;Editar
+              </a>
+                <button type="submit" class="btn btn-primary botao">
+                  <i class="fa-solid fa-close fa-sm"></i>&nbsp;Remover
+                </button>
+              </form>
+          </td>
+        </tr>
       @endforeach
-  @endisset
+    @endisset
+    </tbody>
+  </table>
+  <script>
+        $(document).ready(ativar_tabela('listagem',{'text':'Adicionar','action':function (e,dt,node,config){ alert(1); }}));
+  </script>  
 </x-comex.layout>
+
+

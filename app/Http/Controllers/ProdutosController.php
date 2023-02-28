@@ -11,9 +11,18 @@ use DB;
 class ProdutosController extends Controller
 {
   public function index() {
-    $listagem = Produtos::orderBy('id','desc')->get();
+    $listagem = Produtos::orderBy('id','desc')
+                          ->join('categorias','categorias.id','produtos.categorias_id')
+                          ->get([
+                            'produtos.id as id',
+                            'produtos.nome as nome',
+                            'categorias.nome as categoria',
+                            'produtos.valor_unitario',
+                            'produtos.estoque',
+                            'produtos.vendidos'
+                          ]); 
     $categorias = Categorias::orderBy('id','desc')->get();
-    return view('produtos.index',compact('listagem','categorias'));
+    return view('produtos.index',compact('listagem'));
   }
 
   public function create() {

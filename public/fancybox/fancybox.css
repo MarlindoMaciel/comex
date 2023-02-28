@@ -22,6 +22,7 @@ body.compensate-for-scrollbar {
     position: fixed;
     -webkit-tap-highlight-color: transparent;
     top: 0;
+    -ms-touch-action: manipulation;
     touch-action: manipulation;
     transform: translateZ(0);
     width: 100%;
@@ -97,6 +98,7 @@ body.compensate-for-scrollbar {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
 }
 
@@ -189,10 +191,12 @@ body.compensate-for-scrollbar {
     padding: 0;
     position: absolute;
     top: 0;
+    -ms-transform-origin: top left;
     transform-origin: top left;
     transition-property: transform, opacity;
     -webkit-user-select: none;
     -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
     z-index: 99995;
 }
@@ -207,10 +211,12 @@ body.compensate-for-scrollbar {
 
 .fancybox-can-swipe .fancybox-content,
 .fancybox-can-pan .fancybox-content {
+    cursor: -webkit-grab;
     cursor: grab;
 }
 
 .fancybox-is-grabbing .fancybox-content {
+    cursor: -webkit-grabbing;
     cursor: grabbing;
 }
 
@@ -232,6 +238,7 @@ body.compensate-for-scrollbar {
     top: 0;
     -webkit-user-select: none;
     -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
     width: 100%;
 }
@@ -376,7 +383,9 @@ body.compensate-for-scrollbar {
     position: absolute;
     right: 0;
     top: 0;
+    -ms-transform: scaleX(0);
     transform: scaleX(0);
+    -ms-transform-origin: 0;
     transform-origin: 0;
     transition-property: transform;
     transition-timing-function: linear;
@@ -580,16 +589,19 @@ body.compensate-for-scrollbar {
 
 .fancybox-fx-rotate.fancybox-slide--previous {
     opacity: 0;
+    -ms-transform: rotate(-360deg);
     transform: rotate(-360deg);
 }
 
 .fancybox-fx-rotate.fancybox-slide--next {
     opacity: 0;
+    -ms-transform: rotate(360deg);
     transform: rotate(360deg);
 }
 
 .fancybox-fx-rotate.fancybox-slide--current {
     opacity: 1;
+    -ms-transform: rotate(0deg);
     transform: rotate(0deg);
 }
 
@@ -698,6 +710,7 @@ body.compensate-for-scrollbar {
     transition: all .2s;
     -webkit-user-select: none;
     -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
     white-space: nowrap;
 }
@@ -880,4 +893,3 @@ body.compensate-for-scrollbar {
         max-width: calc(100% - 10px);
     }
 }
-

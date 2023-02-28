@@ -1,8 +1,22 @@
 {
-    "/fancybox/fancybox.css": "/fancybox/fancybox.css",
     "/fontawesome/fontawesome.css": "/fontawesome/fontawesome.css",
     "/bootstrap/bootstrap.css": "/bootstrap/bootstrap.css",
+    "/fancybox/fancybox.css": "/fancybox/fancybox.css",
+    "/datatables/datatables.css": "/datatables/datatables.css",
+    "/datatables/buttons.dataTables.css": "/datatables/buttons.dataTables.css",
     "/jquery/jquery.js": "/jquery/jquery.js",
     "/bootstrap/bootstrap.js": "/bootstrap/bootstrap.js",
-    "/fancybox/fancybox.js": "/fancybox/fancybox.js"
+    "/fancybox/fancybox.js": "/fancybox/fancybox.js",
+    "/datatables/jquery.dataTables.js": "/datatables/jquery.dataTables.js",
+    "/datatables/dataTables.dataTables.js": "/datatables/dataTables.dataTables.js",
+    "/datatables/buttons.dataTables.js": "/datatables/buttons.dataTables.js",
+    "/bootstrap/bootstrap.bundle.js.map": "/bootstrap/bootstrap.bundle.js.map",
+    "/datatables/images/favicon.ico": "/datatables/images/favicon.ico",
+    "/datatables/images/sort_asc.png": "/datatables/images/sort_asc.png",
+    "/datatables/images/sort_asc_disabled.png": "/datatables/images/sort_asc_disabled.png",
+    "/datatables/images/sort_both.png": "/datatables/images/sort_both.png",
+    "/datatables/images/sort_desc.png": "/datatables/images/sort_desc.png",
+    "/datatables/images/sort_desc_disabled.png": "/datatables/images/sort_desc_disabled.png",
+    "/datatables/types/dataTables.dataTables.d.ts": "/datatables/types/dataTables.dataTables.d.ts",
+    "/datatables/types/types.d.ts": "/datatables/types/types.d.ts"
 }

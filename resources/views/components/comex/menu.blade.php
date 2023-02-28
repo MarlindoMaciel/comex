@@ -3,7 +3,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item"><a class="nav-link" aria-current="page" href="{{ route('home.index') }}"><i class="fa-solid fa-sm fa-home"></i>&nbsp;Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ route('pedidos.show',0) }}"><i class="fa-solid fa-xs fa-shopping-cart"></i>&nbsp;Minhas compras</a></li>
+        <li class="nav-item">
+        <a class="nav-link" href="{{ route('pedidos.show',0) }}"><i class="fa-solid fa-xs fa-shopping-cart"></i>&nbsp;Minhas compras
+          @isset( $quantidade )
+            <span id="quantidade" class="quantidade">
+              {{ $quantidade }}
+            </span>
+          @endisset  
+        </a>
+        </li>
+ 
         @auth
           @if( Auth::user()->acess_level > 1 )
             <li class="nav-item"><a class="nav-link" href="{{ route('pedidos.index') }}"><i class="fa-solid fa-sm fa-list"></i>&nbsp;Pedidos</a></li>

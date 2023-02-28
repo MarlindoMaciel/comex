@@ -21,8 +21,8 @@ class CategoriasFormRequest extends FormRequest
     public function messages()
     {
         return [
-            'nome.required' => 'O campo nome é obrigatório',
-            'nome.min' => 'O campo nome necessita de pelo menos :min caracteres',
+            'nome.required' => 'O campo :atribute é obrigatório',
+            'nome.min' => 'O campo :atribute necessita de pelo menos :min caracteres',
         ];
     }
 }

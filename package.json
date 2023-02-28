@@ -24,6 +24,10 @@
     "@fancyapps/fancybox": "^3.5.7",
     "@fortawesome/fontawesome-free": "^6.3.0",
     "bootstrap": "^5.2.3",
+    "datatable": "^2.0.2",
+    "datatables.net": "^1.13.2",
+    "datatables.net-buttons-dt": "^2.3.4",
+    "datatables.net-dt": "^1.13.2",
     "jquery": "^3.6.3"
   },
   "name": "comex",
