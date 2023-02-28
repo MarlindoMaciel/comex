@@ -5,15 +5,14 @@
         <li class="nav-item"><a class="nav-link" aria-current="page" href="{{ route('home.index') }}"><i class="fa-solid fa-sm fa-home"></i>&nbsp;Home</a></li>
         <li class="nav-item">
         <a class="nav-link" href="{{ route('pedidos.show',0) }}"><i class="fa-solid fa-xs fa-shopping-cart"></i>&nbsp;Minhas compras
-          @isset( $quantidade )
-            <span id="quantidade" class="quantidade">
-              {{ $quantidade }}
-            </span>
-          @endisset  
+        <span id="quantidade" class="quantidade">
+          @if( session()->has('quantidade') )  
+              {!! session('quantidade') !!}
+          @endif
+          </span>
         </a>
         </li>
- 
-        @auth
+         @auth
           @if( Auth::user()->acess_level > 1 )
             <li class="nav-item"><a class="nav-link" href="{{ route('pedidos.index') }}"><i class="fa-solid fa-sm fa-list"></i>&nbsp;Pedidos</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('clientes.index') }}"><i class="fa-solid fa-sm fa-group"></i>&nbsp;Clientes</a></li>

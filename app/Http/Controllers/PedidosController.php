@@ -17,6 +17,14 @@ class PedidosController extends Controller
     return view('pedidos.index',compact('listagem'));
   }
 
+  public function show($pedido) {
+    if( isset( Auth::user()->id ) )
+        $listagem = Pedidos::where('clientes_id','=',Auth::user()->id);
+    else    
+        $listagem = Pedidos::where('clientes_id','=',session_id());
+    return view('pedidos.show',compact('listagem'));
+  }
+ 
   public function create() {
     $clientes = Clientes::all();
     $status = Status::all();
@@ -28,14 +36,6 @@ class PedidosController extends Controller
     $clientes = Clientes::all();
     $status = Status::all();
     return view('pedidos.edit',compact('item','clientes','status'));
-  }
-
-  public function show($pedido) {
-    if( isset( Auth::user()->id ) )
-        $listagem = Pedidos::where('clientes_id','=',Auth::user()->id);
-    else    
-        $listagem = Pedidos::where('clientes_id','=',session_id());
-    return view('pedidos.show',compact('listagem'));
   }
 
   public function store(PedidosFormRequest $request) {
@@ -73,5 +73,9 @@ class PedidosController extends Controller
     }
 
     return to_route('pedidos.index')->with('mensagem',$mensagem);
+  }
+
+  public function add($pedido) {
+
   }
 }

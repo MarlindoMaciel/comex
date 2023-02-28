@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('categorias',   App\Http\Controllers\CategoriasController::class);
     Route::resource('clientes',     App\Http\Controllers\ClientesController::class);
     Route::resource('produtos',     App\Http\Controllers\ProdutosController::class);
-    Route::resource('testes',       App\Http\Controllers\TestesController::class);
+    Route::resource('operacoes',    App\Http\Controllers\OperacoesController::class);
 });
 
 require __DIR__.'/auth.php';

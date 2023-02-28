@@ -51,7 +51,7 @@
  
     <div class="logo"><img src="{{ asset('/comex/imagens/') }}/comex.png"></div>
     
-    <x-comex.menu :quantidade=$quantidade />
+    <x-comex.menu />
     
     <br>
     <div class="conteudo">
