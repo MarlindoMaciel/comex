@@ -39,14 +39,19 @@
     box-shadow: 2px 3px 6px rgb(0 0 0 / 10%) !important;
     transition: all .1s !important;
 }
-.quantidade{
-  border-radius: 5px;
+.quantidade {
   position:absolute;
+  top:3px;
+  background-color: green;
+  opacity: 50%;
+  color: #fff;
   font-size:8pt;
-  color:white;
-  background-color:blue;
- }
-
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 4px;
+  text-align: center;
+  margin-left: 5px;
+}
 body{
   font-family: 'Nunito', sans-serif;
   margin:0;

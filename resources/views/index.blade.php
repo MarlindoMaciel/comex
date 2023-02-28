@@ -1,4 +1,4 @@
-<x-comex.layout :quantidade=$quantidade>
+<x-comex.layout>
   <div class="row mb-2">
     <div class="col-2">
         <x-comex.lateral :itens=$menu_lateral />
