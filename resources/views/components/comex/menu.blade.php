@@ -4,11 +4,14 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item"><a class="nav-link" aria-current="page" href="{{ route('home.index') }}"><i class="fa-solid fa-sm fa-home"></i>&nbsp;Home</a></li>
         <li class="nav-item">
-        <span id="quantidade" class="quantidade">
-          @if( session()->has('quantidade') )  
-              {!! session('quantidade') !!}
-          @endif
+        @if( session()->get('quantidade') > 0 )  
+          <span id="quantidade" class="quantidade">
+              {{ session()->get('quantidade') }}
           </span>
+        @else  
+          <span id="quantidade" class="quantidade" style="display:none">
+          </span>
+        @endif
         <a class="nav-link" href="{{ route('pedidos.show',0) }}"><i class="fa-solid fa-xs fa-shopping-cart"></i>&nbsp;Minhas compras
         </a>
         </li>
@@ -28,7 +31,7 @@
         @if (Route::has('login'))
           <div class="me-2">
             @auth
-              <a href="{{ url('/dashboard') }}" class="btn btn-outline-success"><i class="fa-solid fa-sm fa-user"></i>Minha conta</a>
+              <a href="{{ url('/dashboard') }}" class="btn btn-outline-success"><i class="fa-solid fa-sm fa-user"></i>&nbsp;Minha conta</a>
             @else
               <a href="{{ route('login') }}" class="btn btn-outline-success"><i class="fa-solid fa-sm fa-user"></i>&nbsp;Logar</a>
               @if (Route::has('register'))

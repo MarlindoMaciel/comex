@@ -28,18 +28,18 @@ class ClientesFormRequest extends FormRequest
     public function messages()
     {
         return [
-            'nome.required'     => 'O campo :atribute é obrigatório',
-            'nome.min'          => 'O campo :atribute necessita de pelo menos :min caracteres',
-            'cpf.required'      => 'O :atribute cpf é obrigatório',
-            'cpf.min'           => 'O campo :atribute necessita de pelo menos :min caracteres',
-            'telefone.required' => 'O campo :atribute é obrigatório',
-            'telefone.min'      => 'O campo :atribute necessita de pelo menos :min caracteres',
-            'telefone.max'      => 'O campo :atribute não pode ter mais de :min caracteres',
-            'rua.required'      => 'O campo :atribute é obrigatório',
-            'numero.required'   => 'O campo :atribute é obrigatório',
-            'bairro.required'   => 'O campo :atribute é obrigatório',
-            'cidade.required'   => 'O campo :atribute é obrigatório',
-            'estado.required'   => 'O campo :atribute é obrigatório',
+            'nome.required'     => 'O campo nome é obrigatório',
+            'nome.min'          => 'O campo nome necessita de pelo menos :min caracteres',
+            'cpf.required'      => 'O campo cpf é obrigatório',
+            'cpf.min'           => 'O campo cpf necessita de pelo menos :min caracteres',
+            'telefone.required' => 'O campo telefone é obrigatório',
+            'telefone.min'      => 'O campo telefone necessita de pelo menos :min caracteres',
+            'telefone.max'      => 'O campo telefone não pode ter mais de :min caracteres',
+            'rua.required'      => 'O campo rua é obrigatório',
+            'numero.required'   => 'O campo numero é obrigatório',
+            'bairro.required'   => 'O campo bairro é obrigatório',
+            'cidade.required'   => 'O campo cidade é obrigatório',
+            'estado.required'   => 'O campo estado é obrigatório',
         ];
     }
 }

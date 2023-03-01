@@ -1,0 +1,1 @@
+<img src="{{ asset('/comex/imagens/') }}/comex.png">

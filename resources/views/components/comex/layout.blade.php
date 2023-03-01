@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+
     <title>{{ env('APP_NAME').' '.env('APP_VERSION') }}</title>
+
     <!-- jquery -->
     <script src="{{ asset('jquery/jquery.js') }}"></script>
 
@@ -40,7 +43,7 @@
       </div>
     @endif
     @if ($errors->any())
-    <div class="alert alert-danger mensagem">
+    <div class="alert alert-danger mensagem" id="alertas">
         <ul>
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
@@ -48,8 +51,9 @@
         </ul>
     </div>
     @endif
- 
-    <div class="logo"><img src="{{ asset('/comex/imagens/') }}/comex.png"></div>
+    <div class="logo">
+        <x-comex.logo />
+    </div>
     
     <x-comex.menu />
     
@@ -58,8 +62,7 @@
        {{ $slot }}
     </div>
     <script>
-      onload=apagar();
-      var lista = new Array();
+      $(document).ready(function() { ativar_tabela('listagem'); apagar(); });
     </script>
   </body>
 </html>

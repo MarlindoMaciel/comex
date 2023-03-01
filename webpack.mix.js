@@ -4,12 +4,10 @@ mix
   .sass('resources/scss/bootstrap.scss','public/bootstrap/bootstrap.css')  
   .sass('resources/scss/fontawesome.scss','public/fontawesome/fontawesome.css')  
   
-  .styles('resources/css/comex.scss','public/comex/comex.css')
   .styles('node_modules/@fancyapps/fancybox/dist/jquery.fancybox.css','public/fancybox/fancybox.css')
   .styles('node_modules/datatables.net-dt/css/jquery.dataTables.css','public/datatables/datatables.css')  
   .styles('node_modules/datatables.net-buttons-dt/css/buttons.dataTables.css','public/datatables/buttons.dataTables.css')  
   
-  .scripts('resources/js/comex.js', 'public/comex/comex.js')
   .scripts('node_modules/jquery/dist/jquery.js', 'public/jquery/jquery.js')
   .scripts('node_modules/bootstrap/dist/js/bootstrap.bundle.js', 'public/bootstrap/bootstrap.js')
   .scripts('node_modules/@fancyapps/fancybox/dist/jquery.fancybox.js', 'public/fancybox/fancybox.js')

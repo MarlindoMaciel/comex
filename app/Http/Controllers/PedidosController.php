@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Models\Pedidos;
+use App\Models\Itens;
 use App\Models\Clientes;
 use App\Models\Status;
 use App\Http\Requests\PedidosFormRequest;
@@ -18,11 +19,17 @@ class PedidosController extends Controller
   }
 
   public function show($pedido) {
-    if( isset( Auth::user()->id ) )
-        $listagem = Pedidos::where('clientes_id','=',Auth::user()->id);
-    else    
-        $listagem = Pedidos::where('clientes_id','=',session_id());
-    return view('pedidos.show',compact('listagem'));
+    $pedido = Pedidos::find(session()->get('pedidos_id_ativo'));
+    $listagem = Itens::where('pedidos_id','=',session()->get('pedidos_id_ativo'))
+                        ->join('produtos','produtos.id','produtos_id')
+                        ->get([
+                            'itens.id',
+                            'itens.valor_unitario',
+                            'itens.valor_desconto',
+                            'itens.quantidade',
+                            'produtos.nome',
+                          ]);
+    return view('pedidos.show',compact('listagem','pedido'));
   }
  
   public function create() {

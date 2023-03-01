@@ -1,34 +1,37 @@
 <x-comex.layout>
   <h4>Listagem de Categorias</h4>
-  <div class="row mb-3">
-    <div class="col-5">
-      <input type="text" name="nome" class="form-control" placeholder="Digite um item para Categoria" required="required" >
+    <div style="position:absolute;z-index:1000;">
+      <a href="{{ route('categorias.create') }}" class="btn btn-primary botao">
+        <i class="fa-solid fa-plus fa-sm"></i>&nbsp;Adicionar uma nova categoria
+      </a>
     </div>
-    <div class="col-1">
-      <button type="submit" class="btn btn-primary botao">Filtrar</button>
-    </div>
-    <div class="col-1">
-      <a href="{{ route('categorias.create',0) }}" class="btn btn-primary botao">Adicionar</a>
-    </div>
-  </div>
-  <hr>
-   @isset( $listagem )
+  <table id="listagem" class="table table-striped">
+    <thead>
+      <tr>
+          <th>Categoria</th>
+          <th width="20%" nowrap>Ação</th>
+      </tr>
+    </thead>
+    <tbody>
+    @isset( $listagem )
       @foreach($listagem as $item)
-      <div class="row mb-3">
-        <div class="col-5">
-          <span class="form-control">{{ $item->nome }}</span>
-        </div>
-        <div class="col-1">
-            <a href="{{ route('categorias.edit',$item->id) }}" class="btn btn-primary botao">Editar</a>
-        </div>
-        <div class="col-1">
-        <form method="POST" action="{{ route('categorias.destroy',$item->id) }}">
+        <tr>
+          <td>{{ $item->nome }}</td>
+          <td width="15%" nowrap>
+              <form method="POST" action="{{ route('categorias.destroy',$item->id) }}">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-primary botao">Remover</button>
-             </form>
-        </div>
-      </div>
+                <a href="{{ route('categorias.edit',$item->id) }}" class="btn btn-primary botao">
+                <i class="fa-solid fa-edit fa-sm"></i>&nbsp;Editar
+              </a>
+                <button type="submit" class="btn btn-primary botao">
+                  <i class="fa-solid fa-close fa-sm"></i>&nbsp;Remover
+                </button>
+              </form>
+          </td>
+        </tr>
       @endforeach
-  @endisset
+    @endisset
+    </tbody>
+  </table>
 </x-comex.layout>

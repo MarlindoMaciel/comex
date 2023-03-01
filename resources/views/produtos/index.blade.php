@@ -1,6 +1,6 @@
 <x-comex.layout>
   <h4>Listagem de Produtos</h4>
-    <div style="position:absolute">
+    <div style="position:absolute;z-index:1000">
       <a href="{{ route('produtos.create') }}" class="btn btn-primary botao">
         <i class="fa-solid fa-plus fa-sm"></i>&nbsp;Adicionar um novo produto
       </a>
@@ -11,8 +11,8 @@
           <th>Produto</th>
           <th>Categoria</th>
           <th>Preço</th>
-          <th>Estoque</th>
-          <th>Vendidos</th>
+          <th class="text-center">Estoque</th>
+          <th class="text-center">Vendas</th>
           <th width="20%" nowrap>Ação</th>
       </tr>
     </thead>
@@ -22,10 +22,10 @@
         <tr>
           <td>{{ $item->nome }}</td>
           <td>{{ $item->categoria }}</td>
-          <td>{{ $item->valor_unitario }}</td>
-          <td>{{ $item->estoque }}</td>
-          <td>{{ $item->vendidos }}</td>
-          <td>
+          <td class="text-right">{{ $item->valor_unitario }}</td>
+          <td class="text-center">{{ $item->estoque }}</td>
+          <td class="text-center">{{ $item->vendidos }}</td>
+          <td width="15%" nowrap>
               <form method="POST" action="{{ route('produtos.destroy',$item->id) }}">
                 @csrf
                 @method('DELETE')
@@ -42,9 +42,4 @@
     @endisset
     </tbody>
   </table>
-  <script>
-        $(document).ready(ativar_tabela('listagem',{'text':'Adicionar','action':function (e,dt,node,config){ alert(1); }}));
-  </script>  
 </x-comex.layout>
-
-

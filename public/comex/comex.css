@@ -45,12 +45,13 @@
   background-color: green;
   opacity: 50%;
   color: #fff;
-  font-size:8pt;
+  font-size:5pt;
   font-weight: bold;
   border-radius: 50%;
   padding: 4px;
   text-align: center;
   margin-left: 5px;
+  min-width: 15px;
 }
 body{
   font-family: 'Nunito', sans-serif;

@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use DB;
+use App\Models\Clientes;
 
 class RegisteredUserController extends Controller
 {
@@ -35,6 +37,7 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+        DB::beginTransaction();
 
         $user = User::create([
             'name' => $request->name,
@@ -42,10 +45,19 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        $cliente = Clientes::create([
+            'nome' => $request->name,
+            'users_id' => $user->id,            
+        ]);
+        session()->put('clientes_id_ativo', $cliente->id);
+        DB::commit(); 
+
+        DB::rollBack();
+
         event(new Registered($user));
 
         Auth::login($user);
-
+        
         return redirect(RouteServiceProvider::HOME);
     }
 }

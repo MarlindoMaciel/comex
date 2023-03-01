@@ -18,10 +18,9 @@ class ComexController extends Controller
       elseif( $request->id == -2 ) //os mais recentes
          $produtos = Produtos::orderBy('created_at','desc')->take(12)->get();
       else
-         $produtos = Produtos::orderBy('created_at','desc')->get();
-
-         session(['quantidade'=>10]);
-
+         $produtos = Produtos::orderBy('created_at','desc')->get();      
+        
+      //session()->remove('quantidade');   
       return view('index',compact('menu_lateral','produtos'));
     }
 }

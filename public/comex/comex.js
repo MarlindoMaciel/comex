@@ -1,15 +1,30 @@
-//adciona produto no carrinho de compras do usuario
-function adicionar(id){
-    //lista.push(id);
-    $('#mensagem').html('<i class="fa-solid fa-sm fa-heart"></i> Produto adicionado a sua lista de compras.');
-    $('#mensagem').show();
-    apagar();
- }
+//esconde a caixa de mensagem
+function apagar(){
+  setTimeout(function(){ $('#mensagem').fadeOut(400); },3000);
+  setTimeout(function(){ $('#alertas').fadeOut(400); },3000);
+}
 
- //esconde a caixa de mensagem
- function apagar(){
-   setTimeout(function(){ $('#mensagem').fadeOut(400); },3000);
- }
+//adiciona produto no carrinho de compras do usuario
+function adicionar_produto(id){
+  $.ajax({
+     type: 'GET',
+     url: 'operacoes/create',
+     data: {
+             'id': id
+           },
+     headers: {
+             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+           },
+     success: function (result){
+              var retorno = JSON.parse(result);
+              $('#mensagem').html(retorno.mensagem);
+              $('#mensagem').show();
+              apagar();
+              $('#quantidade').html(retorno.quantidade);
+              $('#quantidade').show();
+             }
+  });
+}
 
  function ativar_tabela(tabela,botao) {
   var table = $('#'+tabela).DataTable({

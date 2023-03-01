@@ -25,15 +25,15 @@ class ProdutosFormRequest extends FormRequest
     public function messages()
     {
         return [
-            'nome.required' => 'O campo :atribute é obrigatório',
-            'nome.min' => 'O campo :atribute necessita de pelo menos :min caracteres',
-            'valor_unitario.required' => 'O campo :atribute é obrigatório',
-            'valor_unitario.numeric' => 'O campo :atribute necessita ser um número',
-            'valor_unitario.not_in' => 'O campo :atribute tem que ser maior que zero',
-            'estoque.required' => 'O campo :atribute é obrigatório',
-            'estoque.numeric' => 'O campo :atribute necessita ser um número',
-            'estoque.between' => 'O campo :atribute tem que ser maior que zero e menor que 1000',
-            'categorias_id.required' => 'É necessário',
+            'nome.required' => 'O campo nome é obrigatório',
+            'nome.min' => 'O campo nome não pode ter mais de :max caracteres',
+            'valor_unitario.required' => 'O campo valor unitário é obrigatório',
+            'valor_unitario.numeric' => 'O campo valor unitário necessita ser um número',
+            'valor_unitario.not_in' => 'O campo valor unitário tem que ser maior que zero',
+            'estoque.required' => 'O campo estoque é obrigatório',
+            'estoque.numeric' => 'O campo estoque necessita ser um número',
+            'estoque.between' => 'O campo estoque tem que ser maior que zero e menor que 1000',
+            'categorias_id.required' => 'O campo categoria é obrigatório',
         ];
     }
 }
