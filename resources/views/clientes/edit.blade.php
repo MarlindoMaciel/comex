@@ -30,7 +30,7 @@
     <label>Estado:</label>
     <input type="text" name="estado" class="form-control" value="{{ $item->estado }}"><br>
     
-    <button type="submit" class="btn btn-primary">Salvar</button>&nbsp;
-    <a class="btn btn-primary" href="{{ route('clientes.index') }}">Fechar</a>
+    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-save fa-sm"></i>&nbsp;Salvar</button>&nbsp;
+    <button type="button" class="btn btn-primary" onclick="history.back()"><i class="fa-solid fa-reply fa-sm"></i>&nbsp;Voltar</button>
   </form>
 </x-comex.layout>

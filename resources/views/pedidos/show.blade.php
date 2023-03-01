@@ -1,5 +1,9 @@
 <x-comex.layout>
-  <h4>Lista de Compras {{ $pedido->created_at }}/{{ $pedido->id }}</h4>
+  @isset( $pedido )
+    <h4>{{ $pedido->nome_pedido }} - STATUS: {{ $pedido->status_atual }}</h4>
+  @else
+    <h4>Não há produtos selecionados</h4>
+  @endisset
   <hr>
   <div class="container">
         <div class="row">
@@ -27,10 +31,24 @@
               <span class="form-control" id="valor_unitario_{{ $item->id }}" style="text-align:right">{{ str_replace(',','.',$item->valor_unitario) }}</span>
             </div>
             <div class="col">
-              <input type="number" min="1" id="quantidade_{{ $item->id }}" class="form-control" value="{{ $item->quantidade }}" onchange="Soma()">
+              @if ( isset( $pedido ) and $pedido->status_atual == 'INICIADO'  ) 
+                <input type="number" min="1" id="quantidade_{{ $item->id }}" class="form-control" value="{{ $item->quantidade }}" onchange="Soma()">
+              @else
+                <input type="number" min="1" id="quantidade_{{ $item->id }}" class="form-control" value="{{ $item->quantidade }}" readonly>
+              @endif    
             </div>
             <div class="col">
               <span class="form-control parcial" id="parcial_{{ $item->id }}" style="text-align:right"></span>
+            </div>
+            <div class="col">
+              <form method="POST" action="{{ route('operacoes.destroy',$item->id) }}">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-primary botao">
+                  <i class="fa-solid fa-close fa-sm"></i>&nbsp;
+                  Remover
+                </button>
+              </form>
             </div>
         </div>
       @endforeach
@@ -50,22 +68,18 @@
         </div>
 
   </div>
+  <br>
+  <div class="text-center">
+    <button type="button" class="btn btn-primary botao" onclick="">
+        <i class="fa-solid fa-shopping-cart fa-sm"></i>&nbsp;
+        Concluir Compra
+    </button>
+    <button type="button" class="btn btn-primary botao" onclick="history.back()">
+        <i class="fa-solid fa-reply fa-sm"></i>&nbsp;
+        Voltar
+    </button>
+  </div>
   <script>
     Soma();
-    function Soma(){
-      var soma = 0;
-      $('.ids').each(function(){
-        var id = $(this).val();
-        var valorparcial = parseFloat($('#valor_unitario_'+id).html()) * $('#quantidade_'+id).val();
-        $('#parcial_'+id).html((valorparcial).toFixed(2));
-
-        var valorItem = parseFloat($('#parcial_'+id).html());
-
-        if(!isNaN(valorItem))
-          soma += parseFloat(valorItem);
-      });
-      
-      $('#total').html((soma).toFixed(2));
-    }
-</script>
+  </script>
  </x-comex.layout>

@@ -19,7 +19,21 @@ class PedidosController extends Controller
   }
 
   public function show($pedido) {
-    $pedido = Pedidos::find(session()->get('pedidos_id_ativo'));
+    if ( isset( $pedido ) and $pedido > 0 ) 
+      $id = $pedido;
+    else  
+      $id = session()->get('pedidos_id_ativo');
+
+    $pedido = Pedidos::where('pedidos.id','=',$id)
+                        ->join('status','status.id','=','pedidos.status_id')
+                        ->get([
+                          'pedidos.nome as nome_pedido',
+                          'pedidos.valor_total',
+                          'status.status as status_atual',
+                          'pedidos.created_at as data',
+                        ])
+                        ->first();
+    
     $listagem = Itens::where('pedidos_id','=',session()->get('pedidos_id_ativo'))
                         ->join('produtos','produtos.id','produtos_id')
                         ->get([
@@ -29,6 +43,7 @@ class PedidosController extends Controller
                             'itens.quantidade',
                             'produtos.nome',
                           ]);
+    session()->put('quantidade',count($listagem));                      
     return view('pedidos.show',compact('listagem','pedido'));
   }
  
@@ -80,9 +95,5 @@ class PedidosController extends Controller
     }
 
     return to_route('pedidos.index')->with('mensagem',$mensagem);
-  }
-
-  public function add($pedido) {
-
   }
 }

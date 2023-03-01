@@ -18,7 +18,7 @@
          @auth
           @if( Auth::user()->acess_level > 1 )
             <li class="nav-item"><a class="nav-link" href="{{ route('pedidos.index') }}"><i class="fa-solid fa-sm fa-list"></i>&nbsp;Pedidos</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ route('clientes.index') }}"><i class="fa-solid fa-sm fa-group"></i>&nbsp;Clientes</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('clientes.index') }}"><i class="fa-solid fa-sm fa-male"></i>&nbsp;Clientes</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('produtos.index') }}"><i class="fa-solid fa-sm fa-gift"></i>&nbsp;Produtos</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('categorias.index') }}"><i class="fa-solid fa-sm fa-sitemap"></i>&nbsp;Categorias</a></li>
           @endif

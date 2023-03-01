@@ -1,3 +1,21 @@
+//processa calculos do itens x quantidades x total 
+function Soma(){
+  var soma = 0;
+  $('.ids').each(function(){
+    var id = $(this).val();
+    var valorparcial = parseFloat($('#valor_unitario_'+id).html()) * $('#quantidade_'+id).val();
+    $('#parcial_'+id).html((valorparcial).toFixed(2));
+
+    var valorItem = parseFloat($('#parcial_'+id).html());
+
+    if(!isNaN(valorItem))
+      soma += parseFloat(valorItem);
+  });
+  
+  $('#total').html((soma).toFixed(2));
+}
+
+
 //esconde a caixa de mensagem
 function apagar(){
   setTimeout(function(){ $('#mensagem').fadeOut(400); },3000);

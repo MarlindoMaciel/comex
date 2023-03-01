@@ -9,7 +9,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('pedidos', function (Blueprint $table) {
-            $table->integer('statis_id') // Nome da coluna
+            $table->integer('status_id') // Nome da coluna
                         ->default(1) // Preenchimento não obrigatório
                         ->after('clientes_id'); // Ordenado após a coluna "active"
         });

@@ -27,7 +27,9 @@ class OperacoesController extends Controller
         } 
 
         if ( !session()->has('pedidos_id_ativo') ){
-            $pedido = Pedidos::create(["nome"=>"PEDIDO_0001","clientes_id"=>session()->get('clientes_id_ativo')]);                
+            $pedido = Pedidos::create(["nome"=>"LISTA DE COMPRAS","clientes_id"=>session()->get('clientes_id_ativo')]);                
+            $pedido->nome = $pedido->nome." ".$pedido->created_at."/".$pedido->id;
+            $pedido->save();
             session()->put('pedidos_id_ativo', $pedido->id);
         } 
 
@@ -70,6 +72,15 @@ class OperacoesController extends Controller
     }
 
     public function destroy($id){
-        //
+        DB::beginTransaction();
+        if( Itens::find( $id )->delete() ) {
+          $mensagem = MENSAGEM_SUCESSO;
+          DB::commit(); 
+        } else {
+          $mensagem = MENSAGEM_INSUCESSO;
+          DB::rollBack();
+        }
+    
+        return to_route('pedidos.show')->with('mensagem',$mensagem);            
     }
 }

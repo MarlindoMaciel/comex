@@ -30,7 +30,7 @@
     <label>Descrição:</label>
     <textarea name="descricao" class="form-control">{{ old('descricao') }}</textarea><br>
     
-    <button type="submit" class="btn btn-primary">Salvar</button>&nbsp;
-    <a class="btn btn-primary" href="{{ route('produtos.index') }}">Fechar</a>
+    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-save fa-sm"></i>&nbsp;Salvar</button>&nbsp;
+    <button type="button" class="btn btn-primary" onclick="history.back()"><i class="fa-solid fa-reply fa-sm"></i>&nbsp;Voltar</button>
     </form>
 </x-comex.layout>

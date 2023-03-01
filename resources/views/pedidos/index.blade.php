@@ -16,11 +16,17 @@
               <form method="POST" action="{{ route('pedidos.destroy',$item->id) }}">
                 @csrf
                 @method('DELETE')
+                <a href="{{ route('pedidos.show',$item->id) }}" class="btn btn-primary botao">
+                <i class="fa-solid fa-edit fa-sm"></i>&nbsp;
+                  Itens
+                </a>
                 <a href="{{ route('pedidos.edit',$item->id) }}" class="btn btn-primary botao">
-                <i class="fa-solid fa-edit fa-sm"></i>&nbsp;Editar
-              </a>
+                <i class="fa-solid fa-edit fa-sm"></i>&nbsp;
+                  Editar
+                </a>
                 <button type="submit" class="btn btn-primary botao">
-                  <i class="fa-solid fa-close fa-sm"></i>&nbsp;Remover
+                  <i class="fa-solid fa-close fa-sm"></i>&nbsp;
+                  Remover
                 </button>
               </form>
           </td>
@@ -30,3 +36,4 @@
     </tbody>
   </table>
 </x-comex.layout>
+
