@@ -7,6 +7,7 @@ use App\Models\Clientes;
 use App\Models\Produtos;
 use App\Models\Itens;
 use Illuminate\Http\Request;
+use DB;
 
 class OperacoesController extends Controller
 {

@@ -1,10 +1,11 @@
 <x-comex.layout>
-  @isset( $pedido )
+  @if( $pedido )
     <h4>{{ $pedido->nome_pedido }} - STATUS: {{ $pedido->status_atual }}</h4>
   @else
     <h4>Não há produtos selecionados</h4>
-  @endisset
+  @endif
   <hr>
+  @isset( $listagem )
   <div class="container">
         <div class="row">
             <div class="col-4">
@@ -20,7 +21,6 @@
               <label>Valor Parcial:</label>
             </div>
         </div>
-    @isset( $listagem )
       @foreach($listagem as $item)
         <div class="row">
             <div class="col-4">
@@ -52,7 +52,6 @@
             </div>
         </div>
       @endforeach
-    @endisset
     <hr>
     <div class="row">
             <div class="col-4">
@@ -79,6 +78,7 @@
         Voltar
     </button>
   </div>
+@endisset
   <script>
     Soma();
   </script>
