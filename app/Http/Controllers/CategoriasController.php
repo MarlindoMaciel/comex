@@ -23,16 +23,9 @@ class CategoriasController extends Controller
       return view('categorias.edit',compact('item'));
     }
 
-    public function store(CategoriasFormRequest $request) {
-      DB::beginTransaction();
-      if( Categorias::create( $request->all() ) ){
-        $mensagem = MENSAGEM_SUCESSO;
-        DB::commit(); 
-      } else {
-        $mensagem = MENSAGEM_INSUCESSO;
-        DB::rollBack();
-      }
-      return to_route('categorias.index')->with('mensagem',$mensagem);
+    public function store(CategoriasFormRequest $request, CategoriasRepository $repository) {
+        $mensagem = $repository->add($request);
+        return to_route('categorias.index')->with('mensagem',$mensagem);
     }
 
     public function update(CategoriasFormRequest $request) {
